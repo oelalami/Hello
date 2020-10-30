@@ -54,10 +54,11 @@ parameters {
                  }
             }
           }
-        stage('build'){
+        stage('connexion ssh'){
           steps{
             sshagent (credentials: ['WSL']) {
-            sh 'hostname'
+            sh 'hostname ; pwd'
+        
          
             }
           }
