@@ -1,0 +1,13 @@
+---
+- name: install Jira
+  hosts: remote
+  #become: true
+  remote_user: jiraadm
+  tasks:
+  - name: Create a symbolic link
+    file:
+      src: atlassian-jira-software-7.13.8-standalone
+      dest: /app/jira/jira_system/jira_TI_test/JIRA1
+      owner: jiraadm
+      group: jiragrp
+      state: link

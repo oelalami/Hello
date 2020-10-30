@@ -1,0 +1,12 @@
+---
+- name: install Jira
+  hosts: remote
+  #become: true
+  remote_user: jiraadm
+  tasks:
+
+  - name: Set xml
+    xml:
+     path: /tmp/server.xml
+     xpath: /Server
+     value: 8105

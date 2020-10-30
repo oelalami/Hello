@@ -1,0 +1,33 @@
+---
+- name: install Jira
+  hosts: remote
+  #become: true
+  remote_user: jiraadm 
+  tasks:
+  - name: download Jira packages
+    get_url:
+       url: https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-8.5.5.tar.gz
+       dest: /tmp
+       validate_certs: False
+
+  - name: extract jira packages
+    unarchive:
+       src: /tmp/atlassian-jira-software-8.5.5.tar.gz
+       dest: /tmp
+       remote_src: yes
+
+  - name: Create a symbolic link
+    file:
+      src: atlassian-jira-software-7.13.8-standalone
+      dest: /app/jira/jira_system/jira_TI_test/JIRA1
+      owner: jiraadm
+      group: jiragrp
+      state: link
+
+  - name: JVM MEMORY
+    lineinfile:
+      path: /tmp/JIRA1/bin/setenv.sh
+      regexp: '^JVM_MINIMUM_MEMORY='
+      line: JVM_MINIMUM_MEMORY="512m"
+      regexp: '^JVM_MAXIMUM_MEMORY='
+      line: JVM_MAXIMUM_MEMORY="1024m"

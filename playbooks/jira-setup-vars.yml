@@ -1,0 +1,42 @@
+---
+- name: install Jira
+  hosts: remote
+  #become: true
+  remote_user: jiraadm 
+  vars_files:
+    - jira_vars
+  tasks:
+  - name: download Jira packages
+    get_url:
+       url: "{{ jira_url }}"
+       dest: /tmp
+       validate_certs: False
+
+  - name: extract jira packages
+    unarchive:
+       src: /tmp/{{ jira_package }}.tar.gz
+       dest: /tmp
+       remote_src: yes
+  - name: Remove file (delete file)
+    file:
+      path: /tmp/{{ jira_package }}.tar.gz
+      state: absent
+
+  - name: Create a symbolic link
+    file:
+      src: "{{ jira_package }}-standalone"
+      dest: /tmp/JIRA1
+      owner: jiraadm
+      group: jiragrp
+      state: link
+
+  - name: JVM MEMORY Min
+    lineinfile:
+      path: /tmp/JIRA1/bin/setenv.sh
+      regexp: '^JVM_MINIMUM_MEMORY='
+      line: 'JVM_MINIMUM_MEMORY=512m'
+  - name: JVM MEMORY Max
+    lineinfile:
+      path: /tmp/JIRA1/bin/setenv.sh
+      regexp: '^JVM_MAXIMUM_MEMORY='
+      line: 'JVM_MAXIMUM_MEMORY=1024m'

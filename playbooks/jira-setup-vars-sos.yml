@@ -1,0 +1,13 @@
+---
+- name: install Jira
+  hosts: remote
+  #become: true
+  remote_user: jiraadm 
+  vars_files:
+    - jira_vars
+  tasks:
+  - name: download Jira packages
+    get_url:
+       url: "{{ jira_url }}"
+       dest: /tmp
+       validate_certs: False

@@ -1,0 +1,12 @@
+---
+- name: install Jira
+  hosts: wiki
+  #become: true
+  remote_user: wikiadm
+  tasks:
+
+  - name: Set xml
+    xml:
+     path: /tmp/server.xml
+     xpath: /business/rating
+     value: 8105
