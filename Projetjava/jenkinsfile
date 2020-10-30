@@ -57,7 +57,8 @@ parameters {
         stage('connexion ssh'){
           steps{
             sshagent (credentials: ['WSL']) {
-            sh 'hostname ; pwd'
+            sh 'hostname ; cd /home/en03845/Hello/Projetjava ; java hello'
+       
         
          
             }
