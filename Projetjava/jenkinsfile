@@ -6,8 +6,8 @@ def pushedConfigHash=''
 
 
 pipeline{
-   agent any
-  //agent {node {label 'linux'}}
+  //agent any
+  agent {node {label 'linux'}}
   options{
     buildDiscarder(
       logRotator(daysToKeepStr: '5', numToKeepStr: '5')
