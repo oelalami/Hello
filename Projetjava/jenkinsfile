@@ -56,8 +56,8 @@ parameters {
           }
         stage('build'){
           steps{
-            script{
-             bat "dir"
+            sshagent (credentials: ['WSL']) {
+            sh 'hostname'
          
             }
           }
