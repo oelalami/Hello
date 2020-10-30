@@ -57,7 +57,7 @@ parameters {
         stage('build'){
           steps{
             script{
-              hostname
+             sh "hostname"
          
             }
           }
