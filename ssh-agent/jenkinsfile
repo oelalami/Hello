@@ -5,7 +5,8 @@ pipeline{
   steps{
     sshagent (credentials: ['WSL']) {
       // get the last commit id from a repository you own
-      sh 'git ls-remote -h --refs git@github.com:oelalami/Hello.git master |awk "{print $1}"'
+      //sh 'git ls-remote -h --refs git@github.com:oelalami/Hello.git master |awk "{print $1}"'
+      sh 'hostname'
     }
   }
 }
