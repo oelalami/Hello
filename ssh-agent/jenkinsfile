@@ -3,10 +3,10 @@ pipeline{
   stages{
   stage('do something with git') {  
   steps{
-    sshagent (credentials: ['WSL']) {
+    sshagent (credentials: ['github-key']) {
       // get the last commit id from a repository you own
-      //sh 'git ls-remote -h --refs git@github.com:oelalami/Hello.git master |awk "{print $1}"'
-      sh 'hostname'
+      sh 'git ls-remote -h --refs git@github.com:oelalami/Hello.git master |awk "{print $1}"'
+      //sh 'hostname'
     }
   }
 }
