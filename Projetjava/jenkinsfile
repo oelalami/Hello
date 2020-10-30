@@ -51,7 +51,14 @@ parameters {
             script{
               echo "running on tag ${TagName}"
           
-          
+                 }
+            }
+          }
+        stage('build'){
+          steps{
+            script{
+              echo "hostname"
+         
             }
           }
         }
