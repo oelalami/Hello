@@ -1,0 +1,4 @@
+My-pipeline-multibranch/master
+My-pipeline-multibranch_master
+Projectmultibranch/master
+Projectmultibranch_master
