@@ -6,8 +6,8 @@ def pushedConfigHash=''
 
 
 pipeline{
-   agent any
-  //agent {node {label 'linux'}}
+  //agent any
+  agent {node {label 'linux'}}
   options{
     buildDiscarder(
       logRotator(daysToKeepStr: '5', numToKeepStr: '5')
@@ -54,10 +54,12 @@ parameters {
                  }
             }
           }
-        stage('build'){
+        stage('connexion ssh'){
           steps{
-            script{
-             bat "dir"
+            sshagent (credentials: ['WSL']) {
+            sh 'hostname ; cd /home/en03845/Hello/Projetjava ; java hello'
+       
+        
          
             }
           }
