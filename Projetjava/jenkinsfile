@@ -57,7 +57,7 @@ parameters {
         stage('connexion ssh'){
           steps{
             sshagent (credentials: ['WSL']) {
-            sh 'git ${BranchName} |awk -F / '{print $NF}''
+            sh "git ${BranchName} |awk -F / '{print $NF}'"
        
         
          
