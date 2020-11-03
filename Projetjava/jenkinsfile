@@ -22,7 +22,7 @@ parameters {
             defaultValue: '', 
             description: 'tag name', 
             type: 'PT_SINGLE_SELECT', 
-            groovyScript: """def gettags = ("git ls-remote -t git@github.com:oelalami/Hello.git").execute()
+            groovyScript: """def gettags = ("git ls-remote -t git@github.com:oelalami/Hello.git" |awk -F / '{print $NF}').execute()
                return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '').replaceAll("\\\\^\\\\{\\\\}", '')}
                           """,)
     }
@@ -57,8 +57,8 @@ parameters {
         stage('connexion ssh'){
           steps{
             sshagent (credentials: ['WSL']) {
-             branchname='${BranchName} |awk -F / '{print $NF}''
-            sh 'git ${branchname}'
+             //branchname='${BranchName} |awk -F / '{print $NF}''
+            sh 'git ${BranchName}'
        
         
          
