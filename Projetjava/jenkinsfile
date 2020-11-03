@@ -50,14 +50,14 @@ parameters {
           steps{
             script{
               echo "running on tag ${TagName}"
-          
+              echo "running on tag ${BranchName}"
                  }
             }
           }
         stage('connexion ssh'){
           steps{
             sshagent (credentials: ['WSL']) {
-            sh 'hostname ; cd /home/en03845/Hello/Projetjava ; java hello'
+            sh 'git ${BranchName} |awk -F / '{print $NF}''
        
         
          
