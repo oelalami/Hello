@@ -58,7 +58,7 @@ parameters {
         stage('connexion ssh'){
           steps{
             sshagent (credentials: ['WSL']) {
-            sh 'git checkout "${BranchName}|awk -F / '{print $NF}'";echo ${BranchName}; hostname ; cd /home/en03845/Hello/Projetjava ; javac hello.java ; java hello'
+            sh 'git checkout ${BranchName}|awk -F / '{print $NF}';echo ${BranchName}; hostname ; cd /home/en03845/Hello/Projetjava ; javac hello.java ; java hello'
        
         
          
