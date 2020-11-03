@@ -50,6 +50,7 @@ parameters {
           steps{
             script{
               echo "running on tag ${TagName}"
+              echo "running on branch ${BranchName}"
           
                  }
             }
