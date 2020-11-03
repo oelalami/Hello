@@ -67,7 +67,7 @@ parameters {
             sshagent (credentials: ['WSL']) {
             //sh ' echo ${BranchName};git checkout ${BranchName} ; cd /home/en03845/Hello/Projetjava ;javac hello.java;java hello'
             sh 'hostname'
-            sh 'git fetch ; git fetch --tags ;git status ; git merge --ff-only ${TagName}; javac hello.java;java hello'
+            sh 'git fetch ; git fetch --tags ;git status ; git merge --ff-only ${TagName};cp /home/en03845/Hello/Projetjava;javac hello.java;java hello'
             
        
         
