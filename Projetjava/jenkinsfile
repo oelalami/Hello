@@ -25,6 +25,14 @@ parameters {
             groovyScript: """def gettags = ("git ls-remote -t git@github.com:oelalami/Hello.git").execute()
                return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '').replaceAll("\\\\^\\\\{\\\\}", '')}
                           """,)
+        extendedChoice(           
+            name: 'BranchName', 
+            defaultValue: '', 
+            description: 'Branch name', 
+            type: 'PT_SINGLE_SELECT', 
+            groovyScript: """def getbranch = ("git ls-remote -h git@github.com:oelalami/Hello.git").execute()
+               return getbranch.text.readLines().collect { it.split()[1].replaceAll('refs/heads/', '').replaceAll("\\\\^\\\\{\\\\}", '')}
+                          """,)
     }
 
   
@@ -50,6 +58,7 @@ parameters {
           steps{
             script{
               echo "running on tag ${TagName}"
+              echo "running on branch ${BranchName}"
           
                  }
             }
@@ -57,7 +66,8 @@ parameters {
         stage('connexion ssh'){
           steps{
             sshagent (credentials: ['WSL']) {
-            sh 'hostname ; cd /home/en03845/Hello/Projetjava ; java hello'
+            sh ' echo ${BranchName};git checkout ${BranchName} ; cd /home/en03845/Hello/Projetjava ;javac hello.java;java hello'
+            sh 'hostname'
        
         
          
